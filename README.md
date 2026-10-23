@@ -1,10 +1,10 @@
 # SQE Assignment 3 — Unit Test Automation for `dateutil`
 
 ## Team Members
-| Name               | Roll No   | GitHub                                              |
-|--------------------|-----------|------------------------------------------------------|
-| M. Ibrahim Asif    | 24F-3070  | [asifibrahim256](https://github.com/asifibrahim256)  |
-| M. Ahmad           | 24F-3040  | [ahmad-haseeb129](https://github.com/ahmad-haseeb129)|
+| Name               | Roll No   |
+|--------------------|-----------|
+| M. Ibrahim Asif    | 24F-3070  |
+| M. Ahmad           | 24F-3040  |
 
 ## Project Under Test
 - **Project:** [python-dateutil](https://github.com/dateutil/dateutil)
