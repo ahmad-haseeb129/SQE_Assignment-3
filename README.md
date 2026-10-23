@@ -30,13 +30,6 @@ pip install -e ./dateutil
 pytest assignment_tests
 ```
 
-Expected result: 89 passed in ~0.20s (100% pass rate).
-
-- Setup evidence (terminal output): `assignment_docs/setup_output_ibrahim.txt` and `assignment_docs/setup_output_ahmad.txt`
-- Setup video details: `assignment_docs/setup_video_link.txt`
-- Excel Test Cases: `assignment_docs/test_cases_ibrahim.xlsx` and `assignment_docs/test_cases_ahmad.xlsx`
-
----
 
 ## Repository Layout
 
@@ -44,7 +37,7 @@ Expected result: 89 passed in ~0.20s (100% pass rate).
 |---|---|
 | `notes/` | ECP/BVA test design notes, one file per member (`ecp_bva_ibrahim.md`, `ecp_bva_ahmad.md`) |
 | `assignment_tests/` | Automated unit tests, `conftest.py` (suites and order hook) and `data/` (external CSV test data) |
-| `assignment_docs/` | Setup output logs, setup video link, and Excel test case sheets |
+| `assignment_docs/` | Setup output logs, setup video, and Excel test case sheets |
 | `pytest.ini` | Registers test suite markers (`parser`, `relativedelta`, `rrule`, `smoke`, `boundary`, `data_driven`) |
 | `run_assignment_tests.py` | Helper CLI to run a suite or group, view order, or run in parallel |
 | `ASSIGNMENT_README.md` | Assignment documentation |
