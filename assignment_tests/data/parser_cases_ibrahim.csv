@@ -1,0 +1,9 @@
+test_id,input_string,dayfirst,yearfirst,fuzzy,expected_year,expected_month,expected_day,expected_hour,expected_minute,expected_second
+TC_CSV_PI01,2024-01-15,False,False,False,2024,1,15,0,0,0
+TC_CSV_PI02,01/15/2024,False,False,False,2024,1,15,0,0,0
+TC_CSV_PI03,January 15 2024,False,False,False,2024,1,15,0,0,0
+TC_CSV_PI04,2024-02-29,False,False,False,2024,2,29,0,0,0
+TC_CSV_PI05,2024-12-31 23:59:59,False,False,False,2024,12,31,23,59,59
+TC_CSV_PI06,Mar 1 2020,False,False,False,2020,3,1,0,0,0
+TC_CSV_PI07,2024-06-30T14:30:00,False,False,False,2024,6,30,14,30,0
+TC_CSV_PI08,15/01/2024,True,False,False,2024,1,15,0,0,0
