@@ -1,0 +1,9 @@
+test_id,freq,start_year,start_month,start_day,interval,count,expected_count,description
+TC_CSV_RRA01,DAILY,2024,1,1,1,5,5,Daily for 5 days
+TC_CSV_RRA02,WEEKLY,2024,1,1,1,4,4,Weekly for 4 weeks
+TC_CSV_RRA03,MONTHLY,2024,1,15,1,3,3,Monthly for 3 months
+TC_CSV_RRA04,YEARLY,2024,1,1,1,3,3,Yearly for 3 years
+TC_CSV_RRA05,DAILY,2024,1,1,2,4,4,Every 2 days for 4 occurrences
+TC_CSV_RRA06,DAILY,2024,1,1,1,1,1,Single daily occurrence
+TC_CSV_RRA07,MONTHLY,2024,1,1,3,4,4,Quarterly for 4 occurrences
+TC_CSV_RRA08,WEEKLY,2024,1,1,2,3,3,Bi-weekly for 3 occurrences

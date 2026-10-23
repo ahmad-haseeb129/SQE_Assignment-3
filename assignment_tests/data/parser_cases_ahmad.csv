@@ -1,0 +1,6 @@
+test_id,input_string,expected_error
+TC_CSV_PA01,,ParserError
+TC_CSV_PA02,not a valid date string,ParserError
+TC_CSV_PA03,2023-02-29,ParserError
+TC_CSV_PA04,32/01/2024,ParserError
+TC_CSV_PA05,invalid_token_123,ParserError

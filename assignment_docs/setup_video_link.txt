@@ -1,0 +1,17 @@
+SQE Assignment 3 — Setup Demonstration Video
+=============================================
+Group Members:
+- M. Ibrahim Asif (24F-3070)
+- M. Ahmad (24F-3040)
+
+Video Link:
+[Insert YouTube / Google Drive / Loom video link here before final submission]
+
+Content covered in recording:
+1. Cloning repository and virtual environment activation
+2. Package dependencies installation via pip
+3. Verification of python-dateutil import (v3.0.0)
+4. Running the assignment test suite: pytest assignment_tests -v
+5. Parallel test execution demonstration: python run_assignment_tests.py parallel
+6. CSV-driven test execution: python run_assignment_tests.py data
+7. Walkthrough of test_cases_ibrahim.xlsx and test_cases_ahmad.xlsx
