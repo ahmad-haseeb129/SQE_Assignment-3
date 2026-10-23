@@ -2,9 +2,12 @@
 
 Project: [python-dateutil](https://github.com/dateutil/dateutil) (version 3.0.0)  
 Course: Software Quality Engineering (CS-4001)  
-Group Members:
-- **M. Ibrahim Asif (24F-3070)** — GitHub: [asifibrahim256](https://github.com/asifibrahim256)
-- **M. Ahmad (24F-3040)** — GitHub: [ahmad-haseeb129](https://github.com/ahmad-haseeb129)
+
+## Team Members
+| Name               | Roll No   |
+|--------------------|-----------|
+| M. Ibrahim Asif    | 24F-3070  |
+| M. Ahmad           | 24F-3040  |
 
 ---
 
@@ -31,7 +34,7 @@ Expected result: 89 passed in ~0.20s (100% pass rate).
 
 - Setup evidence (terminal output): `assignment_docs/setup_output_ibrahim.txt` and `assignment_docs/setup_output_ahmad.txt`
 - Setup video details: `assignment_docs/setup_video_link.txt`
-- Formal Word Report: `assignment_docs/SQE_Assignment_3_Report.docx`
+- Excel Test Cases: `assignment_docs/test_cases_ibrahim.xlsx` and `assignment_docs/test_cases_ahmad.xlsx`
 
 ---
 
@@ -41,10 +44,10 @@ Expected result: 89 passed in ~0.20s (100% pass rate).
 |---|---|
 | `notes/` | ECP/BVA test design notes, one file per member (`ecp_bva_ibrahim.md`, `ecp_bva_ahmad.md`) |
 | `assignment_tests/` | Automated unit tests, `conftest.py` (suites and order hook) and `data/` (external CSV test data) |
-| `assignment_docs/` | Setup output logs, setup video link, Word report (`.docx`), and Excel test case sheets |
+| `assignment_docs/` | Setup output logs, setup video link, and Excel test case sheets |
 | `pytest.ini` | Registers test suite markers (`parser`, `relativedelta`, `rrule`, `smoke`, `boundary`, `data_driven`) |
 | `run_assignment_tests.py` | Helper CLI to run a suite or group, view order, or run in parallel |
-| `ASSIGNMENT_README.md` | This file |
+| `ASSIGNMENT_README.md` | Assignment documentation |
 
 ---
 
@@ -107,4 +110,4 @@ Inside each group, suites execute in order: `parser` -> `relativedelta` -> `rrul
 | **Task 3: Data-Driven Tests** | `test_parser_csv_ibrahim.py`, `test_relativedelta_csv_ibrahim.py` | `test_parser_csv_ahmad.py`, `test_rrule_csv_ahmad.py` |
 | **Task 3: Excel Test Cases** | `assignment_docs/test_cases_ibrahim.xlsx` | `assignment_docs/test_cases_ahmad.xlsx`, `test_cases.xlsx` |
 | **Task 4: Suites, Order & Config** | Marker definitions in `pytest.ini` and execution hook in `conftest.py` | `run_assignment_tests.py` CLI helper and parallel runner verification |
-| **Summary Report** | Word report structure and technical sections | Final compilation: `assignment_docs/SQE_Assignment_3_Report.docx` |
+| **Summary / Excel Reports** | Test matrix design and initial ECP/BVA mapping | Final compilation: `assignment_docs/test_cases.xlsx` and setup logs |

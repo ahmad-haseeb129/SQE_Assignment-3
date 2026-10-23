@@ -1,4 +1,7 @@
-# SQE Assignment 3 — Unit Test Automation for `dateutil`
+# Assignment 3: Unit Test Automation (python-dateutil)
+
+Project: [python-dateutil](https://github.com/dateutil/dateutil) (version 3.0.0)  
+Course: Software Quality Engineering (CS-4001)  
 
 ## Team Members
 | Name               | Roll No   |
@@ -6,141 +9,105 @@
 | M. Ibrahim Asif    | 24F-3070  |
 | M. Ahmad           | 24F-3040  |
 
-## Project Under Test
-- **Project:** [python-dateutil](https://github.com/dateutil/dateutil)
-- **Language:** Python
-- **Description:** Powerful extensions to the standard `datetime` module — parsing, relative deltas, recurrence rules, and timezone handling.
+---
 
-## Modules Selected for Testing
-| # | Module                  | Description                                  |
-|---|-------------------------|----------------------------------------------|
-| 1 | `dateutil.parser`       | Parsing human-readable date/time strings     |
-| 2 | `dateutil.relativedelta`| Date arithmetic with relative deltas         |
-| 3 | `dateutil.rrule`        | Recurrence rule generation (RFC 2445)        |
-
-## Task Distribution
-| Member | Responsibilities / Test Scope |
-|---|---|
-| **M. Ibrahim Asif (24F-3070)** | • Project environment setup, dependency configuration, and initial repo scaffolding.<br>• ECP & BVA analysis for `dateutil.parser` (standard date formats, boundary dates, dayfirst/yearfirst) and test implementation.<br>• ECP & BVA analysis for `dateutil.relativedelta` (basic offsets, month-end overflow, leap year handling, arithmetic scaling) and test implementation.<br>• Core recurrence tests for `dateutil.rrule` (YEARLY, MONTHLY, WEEKLY, DAILY frequencies, count boundaries, interval progression, between/after lookups).<br>• CSV-driven test implementation for parser and relativedelta. |
-| **M. Ahmad (24F-3040)** | • ECP & BVA analysis for `dateutil.parser` edge cases (empty strings, non-date text, None inputs, fuzzy parsing, time boundaries, timezone offsets).<br>• ECP & BVA analysis for `dateutil.relativedelta` (zero offset, large offset, absolute date parameters, inter-date deltas, year boundaries, negative offsets, type validation).<br>• Advanced recurrence tests for `dateutil.rrule` (HOURLY frequency, weekday filtering, until boundaries, monthday filtering, negative indexing, rruleset exclusions).<br>• CSV test datasets creation and CSV-driven test validation for error handling and recurrence rules.<br>• Excel test case documentation (`docs/test_cases.xlsx`) and execution reporting. |
-
-## Setup Demonstration Video
-- **Demonstration Video Link:** [Video / Recording link placeholder - upload to repository or Google Drive]
-- The video demonstrates cloning the repository, virtual environment creation, dependencies installation, and test execution (`pytest`).
-
-## Local Development Setup
-
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-- Git
-
-### Step-by-Step Setup
+## Setup
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/ahmad-haseeb129/SQE_Assignment-3.git
 cd SQE_Assignment-3
-
-# 2. Create a virtual environment
 python -m venv venv
 
-# 3. Activate the virtual environment
-# Windows (PowerShell):
+# Windows PowerShell:
 .\venv\Scripts\Activate.ps1
-# Windows (CMD):
+# Windows CMD:
 .\venv\Scripts\activate.bat
-# macOS/Linux:
+# Linux/macOS:
 source venv/bin/activate
 
-# 4. Install dependencies
 pip install -r requirements.txt
-
-# 5. Install dateutil in development mode
 pip install -e ./dateutil
+pytest assignment_tests
 ```
 
-### Verify Installation
-```bash
-python -c "import dateutil; print(dateutil.__version__)"
-```
+Expected result: 89 passed in ~0.20s (100% pass rate).
 
-## Running Tests
+- Setup evidence (terminal output): `assignment_docs/setup_output_ibrahim.txt` and `assignment_docs/setup_output_ahmad.txt`
+- Setup video details: `assignment_docs/setup_video_link.txt`
+- Excel Test Cases: `assignment_docs/test_cases_ibrahim.xlsx` and `assignment_docs/test_cases_ahmad.xlsx`
 
-### Run All Tests
-```bash
-pytest
-```
+---
 
-### Run Tests by Module (Suite)
-```bash
-# Parser tests only
-pytest -m parser
+## Repository Layout
 
-# Relativedelta tests only
-pytest -m relativedelta
+| Path | Contents |
+|---|---|
+| `notes/` | ECP/BVA test design notes, one file per member (`ecp_bva_ibrahim.md`, `ecp_bva_ahmad.md`) |
+| `assignment_tests/` | Automated unit tests, `conftest.py` (suites and order hook) and `data/` (external CSV test data) |
+| `assignment_docs/` | Setup output logs, setup video link, and Excel test case sheets |
+| `pytest.ini` | Registers test suite markers (`parser`, `relativedelta`, `rrule`, `smoke`, `boundary`, `data_driven`) |
+| `run_assignment_tests.py` | Helper CLI to run a suite or group, view order, or run in parallel |
+| `ASSIGNMENT_README.md` | Assignment documentation |
 
-# Rrule tests only
-pytest -m rrule
-```
+---
 
-### Run Tests by Category
-```bash
-# ECP tests
-pytest -m ecp
+## Running the Assignment Tests
 
-# BVA tests
-pytest -m bva
+Run these from the repository root with the virtual environment active:
 
-# CSV-driven tests
-pytest -m csv_driven
-```
+| What | Pytest Command | Helper Script Command |
+|---|---|---|
+| Everything, in configured order | `pytest assignment_tests -v` | `python run_assignment_tests.py all` |
+| One group (Smoke) | `pytest assignment_tests -m smoke` | `python run_assignment_tests.py smoke` |
+| One group (Boundary / BVA) | `pytest assignment_tests -m boundary` | `python run_assignment_tests.py boundary` |
+| One group (Data-driven / CSV) | `pytest assignment_tests -m data_driven` | `python run_assignment_tests.py data` |
+| Suite 1 (`dateutil.parser`) | `pytest assignment_tests -m parser` | `python run_assignment_tests.py parser` |
+| Suite 2 (`dateutil.relativedelta`)| `pytest assignment_tests -m relativedelta` | `python run_assignment_tests.py relativedelta` |
+| Suite 3 (`dateutil.rrule`) | `pytest assignment_tests -m rrule` | `python run_assignment_tests.py rrule` |
+| Sequential Groups run | — | `python run_assignment_tests.py groups` |
+| In parallel (all CPU cores) | `pytest assignment_tests -n auto` | `python run_assignment_tests.py parallel` |
+| Show execution order only | `pytest assignment_tests --collect-only -q` | `python run_assignment_tests.py order` |
 
-### Run Tests in Parallel
-```bash
-# Use all available CPU cores
-pytest -n auto
+---
 
-# Use specific number of workers
-pytest -n 4
-```
+## Test Architecture & Execution Order (Task 4)
 
-### Run Specific Test Groups in Order
-```bash
-# Smoke tests first, then full suite
-pytest -m "smoke" && pytest -m "not smoke"
-```
+### Groups and Suites
+- **Groups (markers):** `smoke`, `boundary`, `data_driven`.
+- **Suites (automatically tagged via file prefix):** `parser`, `relativedelta`, `rrule`.
+- Markers are registered in `pytest.ini`; suites and ordering are dynamically assigned in `assignment_tests/conftest.py`.
 
-## Project Structure
-```
-SQE_Assignment-3/
-├── dateutil/               # Cloned dateutil source (project under test)
-├── tests/
-│   ├── conftest.py         # Shared fixtures and CSV data loader
-│   ├── test_csv_driven.py  # Data-driven test runner from CSV files
-│   ├── test_parser.py      # Unit tests for dateutil.parser
-│   ├── test_relativedelta.py # Unit tests for dateutil.relativedelta
-│   └── test_rrule.py       # Unit tests for dateutil.rrule
-├── test_data/
-│   ├── parser_test_data.csv       # CSV test data for parser
-│   ├── relativedelta_test_data.csv # CSV test data for relativedelta
-│   └── rrule_test_data.csv        # CSV test data for rrule
-├── notes/
-│   ├── ecp_bva_parser.md          # ECP/BVA analysis for parser
-│   ├── ecp_bva_relativedelta.md   # ECP/BVA analysis for relativedelta
-│   └── ecp_bva_rrule.md           # ECP/BVA analysis for rrule
-├── docs/
-│   └── test_cases.xlsx            # Excel sheet with all test cases
-├── pytest.ini              # Pytest configuration
-├── requirements.txt        # Python dependencies
-├── README.md               # This file
-└── .gitignore
-```
+### Execution Order
+Tests execute in the following prioritized sequence:
+1. **`smoke` group:** Fast initial sanity checks (`test_parse_iso8601_format`, `test_identity_offset`, `test_yearly_recurrence_rule`).
+2. **`boundary` group:** Boundary Value Analysis test cases for day/month/year limits, overflow rolls, and count limits.
+3. **`data_driven` group:** Tests loaded from external CSV files.
+4. **All remaining tests:** General equivalence classes and special edge cases.
 
-## Test Design Techniques Used
-- **ECP (Equivalence Class Partitioning):** Inputs divided into valid/invalid classes
-- **BVA (Boundary Value Analysis):** Testing at boundary values
-- **Data-Driven Testing:** Test data loaded from CSV files
-- **Parameterization:** `pytest.mark.parametrize` for multiple inputs
-- **Parallel Execution:** `pytest-xdist` for concurrent test runs
-- **Test Ordering:** `pytest-ordering` for controlled execution sequence
+Inside each group, suites execute in order: `parser` -> `relativedelta` -> `rrule`.
+
+### Parameterization & Data-Driven Tests (Task 3)
+- `@pytest.mark.parametrize` is used extensively across `test_parser_ibrahim.py`, `test_relativedelta_ibrahim.py`, and `test_rrule_ahmad.py`.
+- External CSV test data files live in `assignment_tests/data/`:
+  - `parser_cases_ibrahim.csv`: 8 valid parsing vectors.
+  - `relativedelta_cases_ibrahim.csv`: 8 date arithmetic vectors.
+  - `parser_cases_ahmad.csv`: 5 error/malformed input vectors.
+  - `rrule_cases_ahmad.csv`: 8 recurrence rule vectors.
+- Adding a row to any CSV file immediately creates a new automated test case without changing code.
+
+---
+
+## Who Did What (Rubric Allocation Audit)
+
+| Item | M. Ibrahim Asif (24F-3070) | M. Ahmad (24F-3040) |
+|---|---|---|
+| **Task 1: Setup & Instructions** | Initial project scaffolding, virtual environment, and dependency configuration | Setup evidence logs, `run_assignment_tests.py` CLI runner |
+| **Task 1: Setup Video** | Walkthrough execution demonstration script | Demonstration recording coordination |
+| **Task 2: Classes / Modules Covered** | `dateutil.parser` (standard formats, timestamps, dayfirst/yearfirst), `dateutil.relativedelta` (offsets, overflow, leap year, scaling) | `dateutil.parser` (edge cases, invalid inputs, None, fuzzy, timezone), `dateutil.rrule` (frequencies, weekdays, until, bymonthday, rruleset) |
+| **Task 2: ECP/BVA Notes** | `notes/ecp_bva_ibrahim.md` | `notes/ecp_bva_ahmad.md` |
+| **Task 2: Automated Tests** | `test_parser_ibrahim.py`, `test_relativedelta_ibrahim.py` | `test_parser_edge_ahmad.py`, `test_rrule_ahmad.py` |
+| **Task 3: CSV Data Files** | `data/parser_cases_ibrahim.csv`, `data/relativedelta_cases_ibrahim.csv` | `data/parser_cases_ahmad.csv`, `data/rrule_cases_ahmad.csv` |
+| **Task 3: Data-Driven Tests** | `test_parser_csv_ibrahim.py`, `test_relativedelta_csv_ibrahim.py` | `test_parser_csv_ahmad.py`, `test_rrule_csv_ahmad.py` |
+| **Task 3: Excel Test Cases** | `assignment_docs/test_cases_ibrahim.xlsx` | `assignment_docs/test_cases_ahmad.xlsx`, `test_cases.xlsx` |
+| **Task 4: Suites, Order & Config** | Marker definitions in `pytest.ini` and execution hook in `conftest.py` | `run_assignment_tests.py` CLI helper and parallel runner verification |
+| **Summary / Excel Reports** | Test matrix design and initial ECP/BVA mapping | Final compilation: `assignment_docs/test_cases.xlsx` and setup logs |
